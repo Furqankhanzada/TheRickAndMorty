@@ -30,15 +30,10 @@ export const CharacterList: React.FC<CharacterListProps> = () => {
     fetchMore,
   } = useQuery<CharactersData, CharactersVars>(GET_CHARACTERS, { variables: { page: 1 } });
 
-  const onSearchInputTextChange = async (text: string) => {
-    setSearch(text);
-    await fetchMore({ variables: { filter: { name: text } } });
-  };
-
   // Show Loading until data load
   if (loading) {
     return (
-      <View style={styles.center}>
+      <View testID="loading" style={styles.center}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -46,6 +41,11 @@ export const CharacterList: React.FC<CharacterListProps> = () => {
 
   // Show error on screen
   if (error) return <Text>`Error! ${error.message}`</Text>;
+
+  const onSearchInputTextChange = async (text: string) => {
+    setSearch(text);
+    await fetchMore({ variables: { filter: { name: text } } });
+  };
 
   // Character List Item
   const renderItem = ({ item: character }: { item: Character }) => {
@@ -88,6 +88,7 @@ export const CharacterList: React.FC<CharacterListProps> = () => {
 
   return (
     <FlatList
+      testID="flat-list"
       contentContainerStyle={styles.contentContainer}
       data={results}
       ListHeaderComponent={
