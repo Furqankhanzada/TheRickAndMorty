@@ -33,6 +33,12 @@ export interface Info {
   next: number;
   prev: number;
 }
+export interface CharacterData {
+  character: Character;
+}
+export interface CharacterVars {
+  id: number;
+}
 export interface CharactersData {
   characters: Characters;
 }

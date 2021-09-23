@@ -7,13 +7,16 @@ import { useQuery } from "@apollo/client";
 import { Character, CharactersData, CharactersVars } from "../../interfaces";
 import { GET_CHARACTERS } from "../../requests/characters";
 import { CharacterListItem } from "./CharacterListItem";
+import { CharacterListScreenNavigationProp } from "../navigation/AppStack";
 
 // Type Bug Solution
 const SafeSearchBar = SearchBar as unknown as React.FC<SearchBarBaseProps>;
 
-interface CharacterListProps {}
+interface CharacterListProps {
+  navigation: CharacterListScreenNavigationProp;
+}
 
-export const CharacterList: React.FC<CharacterListProps> = () => {
+export const CharacterList: React.FC<CharacterListProps> = ({ navigation }) => {
   const [search, setSearch] = useState<string>("");
   const [fetchMoreLoading, setFetchMoreLoading] = useState<boolean>(false);
   const {
@@ -49,7 +52,7 @@ export const CharacterList: React.FC<CharacterListProps> = () => {
 
   // Character List Item
   const renderItem = ({ item: character }: { item: Character }) => {
-    return <CharacterListItem character={character} />;
+    return <CharacterListItem character={character} navigation={navigation} />;
   };
 
   // Not Found
