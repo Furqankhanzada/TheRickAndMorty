@@ -25,5 +25,6 @@ describe("CharacterListItem", () => {
   it("should navigate on item press", () => {
     const wrapper = render(<CharacterListItem character={mockCharacterData} navigation={navigation} />);
     fireEvent.press(wrapper.queryByTestId("list-item") as ReactTestInstance);
+    expect(navigation.navigate).toHaveBeenCalledWith("CharacterDetails", { id: 1 });
   });
 });
