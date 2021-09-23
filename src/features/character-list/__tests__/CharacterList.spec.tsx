@@ -45,11 +45,15 @@ const mockCharactersData = {
   },
 };
 
+const navigation: any = {
+  navigate: jest.fn(),
+};
+
 describe("CharacterList", () => {
   it("should render and show progress on loading", () => {
     const wrapper = render(
       <MockedProvider addTypename={false} mocks={[mockCharactersData]}>
-        <CharacterList />
+        <CharacterList navigation={navigation} />
       </MockedProvider>,
     );
     expect(wrapper.queryByTestId("loading")).toBeTruthy();
@@ -57,7 +61,7 @@ describe("CharacterList", () => {
   it("should render FlatList when loading is false", async () => {
     const wrapper = render(
       <MockedProvider addTypename={false} mocks={[mockCharactersData]}>
-        <CharacterList />
+        <CharacterList navigation={navigation} />
       </MockedProvider>,
     );
     await waitFor(() => {

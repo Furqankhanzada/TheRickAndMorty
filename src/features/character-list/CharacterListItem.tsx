@@ -15,7 +15,7 @@ export const CharacterListItem: React.FC<CharacterListItemProps> = React.memo(({
     });
   };
   return (
-    <ListItem key={character.id} bottomDivider onPress={handleNavigation}>
+    <ListItem testID="list-item" key={character.id} bottomDivider onPress={handleNavigation}>
       <Avatar rounded source={{ uri: character.image }} />
       <ListItem.Content>
         <ListItem.Title>{character.name}</ListItem.Title>
